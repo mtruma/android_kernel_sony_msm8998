@@ -1,0 +1,46 @@
+config HIMA_HOTPLUG
+        bool "Enable hima-hotplug cpu hotplug driver"
+	depends on STATE_NOTIFIER
+        default n
+        help
+          Generic cpu hotplugging driver for ARM SOCs
+          
+config CLUSTER_PLUG
+ 		bool "Enable cluster-plug cpu hotplug driver"
+ 		default n
+ 		help
+		  CPU hotplug driver designed for ARM big.LITTLE systems where both the big and little CPUs are of the same type. On these systems, it preferable to normall use the big cluster, and only activate the little cluster for highly parallel loads. This hotplug implementation always keeps the big cluster online, and only activates the little cluster for heavy parallel loads.
+		  
+config ALUCARD_HOTPLUG
+		bool "Enable alucard-hotplug cpu hotplug driver"
+ 		default y
+ 		help
+ 	 	 Generic Alucard-hotplug cpu hotplug driver for ARM SOCs
+ 	 	 
+config MSM_HOTPLUG
+	bool "MSM hotplug by [Fluxi]"
+	depends on HOTPLUG_CPU
+	default n
+	help
+	  The MSM hotplug driver controls on-/offlining of additional cores based on current cpu load.
+
+config ASMP
+	bool "Multi-core automatic hotplug support"
+	depends on SMP
+	default n
+	help
+	Automatically hotplugs the multiple cpu cores on and off
+	based on cpu load and suspend stat
+
+config THUNDERPLUG_HOTPLUG
+	bool "Enable plugging down/up of cores using powersuspend"
+	help
+	  This driver uses powersuspend to take down the cpu cores
+	  on a octa core device.
+	  
+config LAZYPLUG
+	bool "Conservative hotplugging for generic devices"
+	default n
+	help
+	  This enables the conservative hotplugging, lazyplug by arter97
+	  based on intelli_plug. Refer to the comments for more info.
